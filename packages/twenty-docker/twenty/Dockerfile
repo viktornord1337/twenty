@@ -257,3 +257,12 @@ LABEL org.opencontainers.image.source=https://github.com/twentyhq/twenty
 LABEL org.opencontainers.image.description="All-in-one Twenty image for local development and SDK usage. Includes PostgreSQL, Redis, server, and worker."
 
 ENTRYPOINT ["/init"]
+
+
+# ===========================================================================
+# Default target for Railway (railway.json schema does not expose --target).
+# This aliases `twenty` (server + frontend) and MUST stay as the last stage in
+# the file so `docker build` picks it when no --target is passed.
+# ===========================================================================
+
+FROM twenty AS railway-default
